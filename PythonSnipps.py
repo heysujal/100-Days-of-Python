@@ -21,7 +21,7 @@ random.random()
 # Random
 a = ['one', 'eleven', 'twelve', 'five', 'six', 'ten']
 print(random.choice(a))
-#inbuilt python functions
+#Inbuilt python functions
 sum(a)
 len(a)
 max(a)
