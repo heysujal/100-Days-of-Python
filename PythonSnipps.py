@@ -26,3 +26,10 @@ sum(a)
 len(a)
 max(a)
 min(a)
+# append and add in lists
+fruits = []
+
+fruits+="orange"
+
+print(fruits)
+#['o', 'r', 'a', 'n', 'g', 'e']
