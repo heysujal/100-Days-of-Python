@@ -16,5 +16,3 @@ def jump():
     turn_left()
 for x in range(6):
     jump()
-
- 
