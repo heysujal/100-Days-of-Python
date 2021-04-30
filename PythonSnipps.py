@@ -33,3 +33,8 @@ fruits+="orange"
 
 print(fruits)
 #['o', 'r', 'a', 'n', 'g', 'e']
+
+#Importing module 
+import python_file_name
+# or
+from other_python_pile import word_list,logo,stages
