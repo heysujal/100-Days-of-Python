@@ -103,4 +103,40 @@ travel_log = [
 ]
 
 travel_log[0] = "Sujal"  #Valid
-print(travel_log[0]) #can produce error if key not found
+print(travel_log[0]) #can produce error if key not found i.e. if 0 is not any key
+
+# Scope
+gamelevel = 3
+enemies = ["skeleton","zombie","alien"]
+
+if gamelevel < 5:
+  new_enemy  = enemies[0]
+
+print(new_enemy)  #valid
+# Remember that in Python there is no block scope. Inside a if/else/for/while code block is the same as outside it.
+#scope with function
+gamelevel = 3
+enemies = ["skeleton","zombie","alien"]
+# function creates a local scope.
+def fun():
+
+  if gamelevel < 5:
+    new_enemy  = enemies[0]
+  # print(new_enemy)  #Valid
+fun()
+print(new_enemy)  #Invalid
+
+# Using global variables can lead to bugs
+#they should be used only for making global constants
+
+
+# This is valid code even if we dont pass enemies as argument
+enemies =1
+
+def inc_enemy():
+    print(f"enemy is {enemies} ")
+    return enemies+100
+
+print(inc_enemy())
+
+# the point being we cannot modify global variable inside a function
