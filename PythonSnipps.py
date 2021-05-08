@@ -140,3 +140,33 @@ def inc_enemy():
 print(inc_enemy())
 
 # the point being we cannot modify global variable inside a function
+
+
+# Making Class
+class Sujal:
+  pass
+  # Constructor
+  def __init__(self,username,id):
+    self.username = username
+    self.id = id
+    self.followers = 0
+# Without constructor
+user1 = Sujal()
+# adding attributes
+user1.id = "101"
+
+user1 = Sujal("sujal","001")
+
+# example2
+class Sujal:
+  pass
+
+  def __init__(self, id, username):
+    self.id = id
+    self.username = username
+
+
+user1 = Sujal(54, "heysujal")
+print(user1)
+print(user1.id)
+print(user1.username)
