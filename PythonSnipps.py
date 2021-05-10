@@ -1,3 +1,7 @@
+# import all at once
+from turtle import *
+
+
 print("hello world"[0])
 # underscores are ignored
 mystery = 734_529.678
