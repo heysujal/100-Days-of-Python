@@ -174,3 +174,14 @@ user1 = Sujal(54, "heysujal")
 print(user1)
 print(user1.id)
 print(user1.username)
+
+# Creating multiple objects from same class
+all_turtles = []
+for turtle_index in range(0,6):
+    new_turtle = Turtle(shape='turtle')
+    # new_turtle.penup()
+    # new_turtle.color(colors[turtle_index])
+    # new_turtle.goto(x=-230, y=-80 + y_offset)
+    # new_turtle.speed('fastest')
+    all_turtles.append(new_turtle)
+
