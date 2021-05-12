@@ -185,3 +185,13 @@ for turtle_index in range(0,6):
     # new_turtle.speed('fastest')
     all_turtles.append(new_turtle)
 
+
+# Inheritence Example
+class Food(Turtle):
+# no need to create a new_turtle from Turtle()
+  def __init__(self):
+    super().__init__()
+    self.shape('circle')
+    self.penup()
+    self.shapesize(stretch_len=0.5, stretch_wid=0.5)
+
