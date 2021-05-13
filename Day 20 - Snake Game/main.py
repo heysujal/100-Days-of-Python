@@ -29,7 +29,7 @@ game_is_on = True
 while game_is_on:
     snake.move()
     screen.update()
-    time.sleep(0.05)
+    time.sleep(0.1)
     if snake.head.distance(food) < 16:
         food.refresh()
         snake.extend()
