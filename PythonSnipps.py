@@ -231,3 +231,16 @@ grey_squirrels_count = len(data[data["Primary Fur Color"] == "Gray"])
 
 # Get actual value from a column of a row
 print(desired_row.state.item())
+
+# List comprehension
+
+# new_array = [new_item for item in array]
+# upper_case_names = [name.upper() for name in names if len(name) > 4]
+# list, tuples,range, string all are python sequences .i.e. they have a order
+
+# Dictionary Comprehension
+# new_dict = {item for item in iterable}
+# dictionary = {key: value for (key, value) in iterable}
+
+# items() returns a tuple
+# new_dict = {key:value for (key,value) in old_dict.items() if test}
