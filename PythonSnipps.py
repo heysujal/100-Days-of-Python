@@ -244,3 +244,43 @@ print(desired_row.state.item())
 
 # items() returns a tuple
 # new_dict = {key:value for (key,value) in old_dict.items() if test}
+
+# *args 
+# PASS unlimited parameters to function and loop over them also access them by args[0]
+# args is a tuple
+# **kwargs
+# def calculate(n,**kwargs):
+#     n+=kwargs['add']  #3
+#     n*=kwargs['multiply']  #9
+#     n-=kwargs['subtract'] #4
+#     n/=kwargs['divide'] #1
+#     print(n)
+# calculate(1,add=2,multiply=3,divide=4,subtract=5)
+
+
+# Email code smtplib
+
+
+# import smtplib
+# import random
+#
+# with open("quotes.txt") as quotes:
+#     quotes_list = quotes.readlines()
+#
+# my_email = ""
+# password = ""
+# connection = smtplib.SMTP("smtp.gmail.com")
+# connection.starttls()
+# random_quote = random.choice(quotes_list)
+# connection.login(user=my_email, password=password)
+# connection.sendmail(from_addr=my_email,to_addrs="",
+#                     msg=f"Subject:Testing Email\n\n{random_quote}")
+# connection.quit()
+
+
+# APIs
+import requests
+
+response = requests.get("http://api.open-notify.org/iss-now.json")
+# for handling error
+response.raise_for_status()
