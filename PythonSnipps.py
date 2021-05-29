@@ -245,7 +245,7 @@ print(desired_row.state.item())
 # items() returns a tuple
 # new_dict = {key:value for (key,value) in old_dict.items() if test}
 
-# *args 
+# *args (Unlimited positional arguements)
 # PASS unlimited parameters to function and loop over them also access them by args[0]
 # args is a tuple
 # **kwargs
@@ -256,6 +256,16 @@ print(desired_row.state.item())
 #     n/=kwargs['divide'] #1
 #     print(n)
 # calculate(1,add=2,multiply=3,divide=4,subtract=5)
+
+
+class Car:
+
+    def __init__(self,**kw):
+        self.make  = kw.get('make')  #if key doesn't exist it returns None
+        self.model  = kw.get('model')
+
+my_car =  Car(make='Nissan')
+print(my_car.model)
 
 
 # Email code smtplib
@@ -284,3 +294,28 @@ import requests
 response = requests.get("http://api.open-notify.org/iss-now.json")
 # for handling error
 response.raise_for_status()
+
+
+
+
+# Tkinter
+
+# Label
+new_label = Label(text="Hello", bg='blue', font=('Arial', 24, 'bold'))
+# greeting.pack()
+
+new_label['text'] = 'Bye'
+new_label.config(text='not yet')
+new_label.grid(column=0, row=0)
+new_label.config(padx=60, pady=60)
+
+
+# Button
+def change_text():
+    new_text = entry.get()
+
+    greeting.config(text=new_text)
+
+
+button = Button(text="Click me!", command=change_text)
+button.grid(column=1, row=1)
