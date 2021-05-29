@@ -74,6 +74,7 @@ checkbutton.pack()
 
 # Radiobutton
 def radio_used():
+
     print(radio_state.get())
 
 
