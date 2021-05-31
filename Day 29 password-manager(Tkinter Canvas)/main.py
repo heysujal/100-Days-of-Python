@@ -1,3 +1,4 @@
+import json
 import random
 from tkinter import *
 from tkinter import messagebox
@@ -40,19 +41,66 @@ def save_password():
 
     email = email_input.get()
     password = password_input.get()
+
+    new_dict = {
+        website: {
+            'email': email,
+            'password': password,
+        }
+    }
     if website == '' or password == '' or email == '':
         messagebox.showerror(title='Field are empty', message="Don't leave any of the fields empty")
     else:
-        is_ok = messagebox.askokcancel(title=website, message=f'These are the details entered: \nEmail:{email}'
-                                                              f'\nPassword:{password}\nIs it ok to save?')
-        # print(website,email,password)
-        if is_ok:
-            with open("data.txt", mode="a") as file:
-                file.write(f"{website} | {email} | {password}\n")
+        try:
+            # 1. Reading old data
+            with open("data.json", mode='r') as file:
+                data = json.load(file)
 
-            website_input.delete(0, END)
-            website_input.focus()
-            password_input.delete(0, END)
+        except FileNotFoundError:
+            with open("data.json", mode='w') as file:
+                json.dump(new_dict, file, indent=4)
+
+        else:
+            data.update(new_dict)
+            with open("data.json", mode='w') as file:
+                json.dump(data, file, indent=4)
+
+        website_input.delete(0, END)
+        website_input.focus()
+        password_input.delete(0, END)
+
+
+# ---------------------------- Search Password ------------------------------- #
+
+def search_password():
+    website = website_input.get()
+    if website == '':
+        messagebox.showwarning(title='Field is empty', message="Enter the name of the website")
+    else:
+
+        try:
+            with open("data.json", mode='r') as file:
+                data = json.load(file)
+        except FileNotFoundError:
+            messagebox.showerror(title='No data', message='No data file found!')
+        else:
+            # if website in data:
+            #     email = data[website]["email"]
+            #     password = data[website]["password"]
+            #     messagebox.showinfo(title=website, message=f"Email: {email}\nPassword: {password}")
+            # else:
+            #     messagebox.showinfo(title="Error", message=f"No details for {website} exists.")
+
+            try:
+                search_result = data[website]
+            except KeyError:
+                messagebox.showerror(title='Website does not exist',
+                                     message='The website you are looking for does not exists!')
+            else:
+                pyperclip.copy(search_result['password'])
+                messagebox.showinfo(title="Password Details",
+                                    message=f"Website: {website}\nEmail: {search_result['email']}\n"
+                                            f"Password: {search_result['password']}")
 
 
 # ---------------------------- UI SETUP ------------------------------- #
@@ -63,30 +111,33 @@ window.title('Password Manager')
 window.config(padx=20, pady=20)
 
 canvas = Canvas(width=200, height=200)
-myimg = PhotoImage(file='logo.png')
-canvas.create_image(100, 100, image=myimg, anchor=CENTER)
+my_img = PhotoImage(file='logo.png')
+canvas.create_image(100, 100, image=my_img, anchor=CENTER)
 canvas.grid(row=0, column=1)
 
 # website label
 
 website_label = Label(text='Website:')
-website_input = Entry(width=35)
+website_input = Entry(width=25)
 website_input.focus()
 website_label.grid(row=1, column=0)
 website_input.grid(row=1, column=1, columnspan=2)
 
+search_button = Button(text='Search', command=search_password)
+search_button.grid(row=1, column=2)
+
 email_label = Label(text='Email/Username:')
-email_input = Entry(width=35)
+email_input = Entry(width=25)
 email_input.insert(0, 'sujalgupta6100@gmail.com')
 email_label.grid(row=2, column=0)
 email_input.grid(row=2, column=1, columnspan=2)
 
 password_label = Label(text='Password:')
-password_input = Entry(width=21)
+password_input = Entry(width=25)
 password_label.grid(row=3, column=0)
-password_input.grid(row=3, column=1)
+password_input.grid(row=3, column=1, columnspan=2)
 
-generate_button = Button(text='Generate Password', command=generate_password)
+generate_button = Button(text='Generate', command=generate_password)
 generate_button.grid(row=3, column=2)
 
 add_button = Button(text='Add', width=36, command=save_password)
