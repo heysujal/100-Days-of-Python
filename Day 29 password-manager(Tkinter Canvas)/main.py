@@ -1,7 +1,9 @@
 import json
 import random
+from json import JSONDecodeError
 from tkinter import *
 from tkinter import messagebox
+
 import pyperclip
 
 
@@ -51,6 +53,7 @@ def save_password():
     if website == '' or password == '' or email == '':
         messagebox.showerror(title='Field are empty', message="Don't leave any of the fields empty")
     else:
+
         try:
             # 1. Reading old data
             with open("data.json", mode='r') as file:
@@ -81,21 +84,21 @@ def search_password():
         try:
             with open("data.json", mode='r') as file:
                 data = json.load(file)
+        except JSONDecodeError:
+            # when file is there but it is empty
+            messagebox.showerror(title='No data', message='Data file is empty.\nSave some data first.')
         except FileNotFoundError:
-            messagebox.showerror(title='No data', message='No data file found!')
-        else:
-            # if website in data:
-            #     email = data[website]["email"]
-            #     password = data[website]["password"]
-            #     messagebox.showinfo(title=website, message=f"Email: {email}\nPassword: {password}")
-            # else:
-            #     messagebox.showinfo(title="Error", message=f"No details for {website} exists.")
+            # when file doesn't exists
+            messagebox.showerror(title='File not found!', message='No data file found!')
 
+        else:
             try:
                 search_result = data[website]
+
             except KeyError:
                 messagebox.showerror(title='Website does not exist',
-                                     message='The website you are looking for does not exists!')
+                                     message='The website you are looking for does not exists in records!')
+
             else:
                 pyperclip.copy(search_result['password'])
                 messagebox.showinfo(title="Password Details",
