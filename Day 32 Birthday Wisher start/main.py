@@ -39,11 +39,11 @@ if day_of_week == 0:
     with open("quotes.txt") as quotes:
         quotes_list = quotes.readlines()
     random_quote = random.choice(quotes_list)
-    my_email = ""
-    password = ""
+    my_email = "YOUREMAIL"
+    password = "YOUR PASSWORD"
     connection = smtplib.SMTP("smtp.gmail.com")
     connection.starttls()
     connection.login(user=my_email, password=password)
-    connection.sendmail(from_addr=my_email, to_addrs="",
+    connection.sendmail(from_addr=my_email, to_addrs="RECEIVER EMAIL ADDRESS",
                         msg=f"Subject:Testing Email\n\n{random_quote}")
     connection.quit()

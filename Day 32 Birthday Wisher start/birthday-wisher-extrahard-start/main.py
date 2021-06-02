@@ -25,8 +25,8 @@ if not final.empty:
     with open(f"./letter_templates/letter_{random.randint(1, 3)}.txt") as file:
         letter_body = file.read()
         letter_body = letter_body.replace("[NAME]", final.name.item())
-        my_email = ""
-        password = ""
+        my_email = "YOUR_EMAIL"
+        password = "YOUR_PASSWORD"
         connection = smtplib.SMTP("smtp.gmail.com")
         connection.starttls()
         connection.login(user=my_email, password=password)
