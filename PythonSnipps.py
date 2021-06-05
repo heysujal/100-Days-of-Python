@@ -290,8 +290,12 @@ print(my_car.model)
 
 # APIs
 import requests
-
-response = requests.get("http://api.open-notify.org/iss-now.json")
+parameters = {
+    "lat": MY_LAT,
+    "lng": MY_LNG,
+    "formatted":0,
+}
+response = requests.get("http://api.open-notify.org/iss-now.json",params = parameters)
 # for handling error
 response.raise_for_status()
 
@@ -299,7 +303,7 @@ response.raise_for_status()
 
 
 # Tkinter
-
+window.after()
 # Label
 new_label = Label(text="Hello", bg='blue', font=('Arial', 24, 'bold'))
 # greeting.pack()
@@ -309,7 +313,10 @@ new_label.config(text='not yet')
 new_label.grid(column=0, row=0)
 new_label.config(padx=60, pady=60)
 
-
+#canvas
+canvas.create_image(400, 263, image=card_front_img)
+timer_text = canvas.create_text(400,150, text='French', font=('Ariel', 40, 'italic'))
+canvas.itemconfig(timer_text, text=f"{count_min:02d}:{count_sec:02d}")
 # Button
 def change_text():
     new_text = entry.get()
@@ -319,3 +326,23 @@ def change_text():
 
 button = Button(text="Click me!", command=change_text)
 button.grid(column=1, row=1)
+
+# messageboxes
+
+from tkinter import messagebox
+messagebox.showerror()
+messagebox.askokcancel()
+# error handling
+raise TypeError("This is the error which I made")
+
+# JSON
+with open("data.json", mode="r") as file:
+    # 1.Reading old data
+    data = json.load(file)
+    # 2. Updating old data with new data
+    data.update(new_dict)
+    # 3.Writing into json file
+
+with open("data.json", mode='w') as file:
+    json.dump(data, file, indent=4)
+
