@@ -1,7 +1,7 @@
 STOCK = "TSLA"
 COMPANY_NAME = "Tesla Inc"
-STOCK_API_KEY = "65QOX3M3WH3GDG2A"
-NEWS_API_KEY = "f48945d1eb6a4412bb4c881d85ec6673"
+STOCK_API_KEY = ""
+NEWS_API_KEY = ""
 
 from datetime import date
 
@@ -16,8 +16,8 @@ today = date.today()
 # Send a seperate message with the percentage change and each article's title and description to your phone number.
 from twilio.rest import Client
 
-account_sid = "ACbe627bb9983b5ce004bcd201522ec919"
-auth_token = "514a0f962b0be7bdae58e6a260ea3803"
+account_sid = ""
+auth_token = ""
 
 ## STEP 1: Use https://www.alphavantage.co
 # When STOCK price increase/decreases by 5% between yesterday and the day before yesterday then print("Get News").
@@ -71,6 +71,6 @@ if percent > 0:
             body=f"{STOCK}: {up_down} {percent}%\n"
                  f"{article}",
             from_='+19543711080',
-            to='+919773707840'
+            to='+'
         )
         print(message.status)
