@@ -346,3 +346,14 @@ with open("data.json", mode="r") as file:
 with open("data.json", mode='w') as file:
     json.dump(data, file, indent=4)
 
+
+
+# Authenticate using headers
+
+headers = {
+
+    "X-USER-TOKEN": TOKEN
+}
+res = requests.post(url=graph_endpoint, json=graph_params, headers=headers)
+
+
